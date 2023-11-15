@@ -13,7 +13,7 @@ int rep_ali(info_t *in)
 	int b;
 	list_t *c;
 
-	for (b = 0; b < 10; ++b)
+	for (b = 0; b < 10; b++)
 	{
 		c = pre_node(in->alias, in->argv[0], '=');
 		if (!c)

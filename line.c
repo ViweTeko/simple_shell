@@ -84,11 +84,11 @@ ssize_t buf_in(info_t *in, char **b, size_t *a)
 		free(*b);
 		*b = NULL;
 		signal(SIGINT, sig_int);
-	#if GETLINE_USED
+#if GETLINE_USED
 		 d = getline(b, &c, stdin);
-	#else
+#else
 		d = _getline(in, b, &c);
-	#endif
+#endif
 		if (d > 0)
 		{
 			if ((*b)[d - 1] == '\n')

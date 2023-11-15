@@ -8,9 +8,9 @@
  */
 size_t print_list(const list_t *h)
 {
-	size_t a;
+	size_t a = 0;
 
-	for (a = 0; h != NULL; ++a)
+	while (h)
 	{
 		_puts(conv_num(h->num, 10, 0));
 		_putchar(':');
@@ -18,6 +18,7 @@ size_t print_list(const list_t *h)
 		_puts(h->s ? h->s : "(nil)");
 		_puts("\n");
 		h = h->next;
+		a++;
 	}
 	return (a);
 }
@@ -48,13 +49,14 @@ size_t list_len(const list_t *h)
 
 size_t print_s_list(const list_t *h)
 {
-	size_t a;
+	size_t a = 0;
 
-	for (a = 0; h != NULL; ++a)
+	while (h)
 	{
 		_puts(h->s ? h->s : "(nil)");
 		_puts("\n");
 		h = h->next;
+		a++;
 	}
 	return (a);
 }
@@ -78,12 +80,12 @@ char **strings_list(list_t *h)
 	st = malloc(sizeof(char *) * (b + 1));
 	if (!st)
 		return (NULL);
-	for (b = 0; g; g = g->next, ++b)
+	for (b = 0; g; g = g->next, b++)
 	{
 		s = malloc(_len(g->s) + 1);
 		if (!s)
 		{
-			for (a = 0; a < b; ++a)
+			for (a = 0; a < b; a++)
 				free(st[a]);
 			free(st);
 			return (NULL);

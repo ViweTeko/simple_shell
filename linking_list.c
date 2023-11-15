@@ -85,13 +85,14 @@ list_t *node_end(list_t **h, const char *s, int num)
 
 ssize_t get_index(list_t *h, list_t *node)
 {
-	size_t a;
+	size_t a = 0;
 
-	for (a = 0; h != NULL; ++a)
+	while (h)
 	{
 		if (h == node)
 			return (a);
 		h = h->next;
+		a++;
 	}
 	return (-1);
 }
@@ -129,7 +130,7 @@ int delete_node(list_t **h, unsigned int index)
 			free(i);
 			return (1);
 		}
-		++a;
+		a++;
 		g = i;
 		i = i->next;
 	}
@@ -145,7 +146,7 @@ void list_free(list_t **h)
 {
 	list_t *g, *i, *hd;
 
-	if (*h != NULL || h != NULL)
+	if (!*h || !h)
 		return;
 	hd = *h;
 	g = hd;

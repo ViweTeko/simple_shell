@@ -82,7 +82,7 @@ char *_ncpy(char *dest, char *src, int n)
 	char *a = dest;
 	int b, c;
 
-	for (b = 0; src[b] != '\n' && b < n - 1; ++b)
+	for (b = 0; src[b] != '\0' && b < n - 1; ++b)
 		dest[b] = src[b];
 	if (b < n)
 	{

@@ -16,7 +16,7 @@ int set_env(info_t *in, char *e, char *val)
 	if (!e || !val)
 		return (0);
 	b = malloc(_len(e) + _len(val) + 2);
-	if (b == NULL)
+	if (!b)
 		return (1);
 	_cpy(b, e);
 	_cat(b, "=");
@@ -26,7 +26,7 @@ int set_env(info_t *in, char *e, char *val)
 	while (c)
 	{
 		a = starts_w(c->s, e);
-		if (*a == '=' && a)
+		if (a && *a == '=')
 		{
 			free(c->s);
 			in->changed_env = 1;
@@ -51,15 +51,15 @@ int set_env(info_t *in, char *e, char *val)
 int un_setenv(info_t *in, char *e)
 {
 	char *a;
-	size_t b;
+	size_t b = 0;
 	list_t *c = in->env;
 
 	if (!e || !c)
 		return (0);
-	for (b = 0; c != NULL; ++b)
+	while (c)
 	{
 		a = starts_w(c->s, e);
-		if (*a == '=' && a)
+		if (a && *a == '=')
 		{
 			in->changed_env = delete_node(&(in->env), b);
 			b = 0;
@@ -67,6 +67,7 @@ int un_setenv(info_t *in, char *e)
 			continue;
 		}
 		c = c->next;
+		b++;
 	}
 	return (in->changed_env);
 }
@@ -106,7 +107,7 @@ int find_built(info_t *in)
 		{NULL, NULL}
 	};
 
-	for (a = 0; z[a].type; ++a)
+	for (a = 0; z[a].type; a++)
 		if (_cmp(in->argv[0], z[a].type) == 0)
 		{
 			in->lc++;

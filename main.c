@@ -101,35 +101,36 @@ char **stow(char *s, char *de)
 	char **r;
 	int a, b, c, d, e = 0;
 
-	if (s[0] == 0 || s == NULL)
+	if (s == NULL || s[0] == 0)
 		return (NULL);
-	if (de == NULL)
+	if (!de)
 		de = " ";
-	for (a = 0; s[a] != '\0'; ++a)
+	for (a = 0; s[a] != '\0'; a++)
 		if (!_delim(s[a], de) && (_delim(s[a + 1], de) || !s[a + 1]))
-			++e;
+			e++;
 	if (e == 0)
 		return (NULL);
 	r = malloc((1 + e) * sizeof(char *));
 	if (!r)
 		return (NULL);
 
-	for (a = 0, b = 0; b < e; ++b)
+	for (a = 0, b = 0; b < e; b++)
 	{
 		while (_delim(s[a], de))
-			++a;
+			a++;
+		c = 0;
 		while (_delim(s[a + c], de) && s[a + c])
-			++c;
+			c++;
 		r[b] = malloc((c + 1) * sizeof(char));
 		if (!r[b])
 		{
-			for (c = 0; c < b; ++c)
+			for (c = 0; c < b; c++)
 				free(r[c]);
 			free(r);
 			return (NULL);
 		}
-		for (d = 0; d < c; ++d)
-			r[b][d] = s[++a];
+		for (d = 0; d < c; d++)
+			r[b][d] = s[a++];
 		r[b][d] = 0;
 	}
 	r[b] = NULL;
@@ -149,34 +150,34 @@ char **stow2(char *s, char de)
 	char **r;
 	int a, b, c, d, e = 0;
 
-	if (s[0] == 0 || s == NULL)
+	if (s == NULL || s[0] == 0)
 		return (NULL);
-	for (a = 0; s[a] != '\0'; ++a)
+	for (a = 0; s[a] != '\0'; a++)
 		if ((s[a] != de && s[a + 1] == de)
 				|| (s[a] != de && !s[a + 1])
 				|| s[a + 1] == de)
-			++e;
+			e++;
 	if (e == 0)
 		return (NULL);
 	r = malloc((1 + e) * sizeof(char *));
 	if (!r)
 		return (NULL);
-	for (a = 0, b = 0; b < e; ++b)
+	for (a = 0, b = 0; b < e; b++)
 	{
 		while (s[a] == de && s[a] != de)
-			++a;
+			a++;
 		c = 0;
 		while (s[a + c] != de && s[a + c] && s[a + c] != de)
-			++c;
+			c++;
 		r[b] = malloc((c + 1) * sizeof(char));
 		if (!r[b])
 		{
-			for (c = 0; c < b; ++c)
+			for (c = 0; c < b; c++)
 				free(r[c]);
 			free(r);
 			return (NULL);
 		}
-		for (d = 0; d < c; ++d)
+		for (d = 0; d < c; d++)
 			r[b][d] = s[a++];
 		r[b][d] = 0;
 	}

@@ -13,7 +13,7 @@ char *_chr(char *s, char c)
 	do {
 		if (*s == c)
 			return (s);
-	} while (*s++);
+	} while (*s++ != '\0');
 	return (NULL);
 }
 
@@ -32,7 +32,7 @@ char *_ncat(char *dest, char *src, int n)
 	int b = 0, c = 0;
 
 	while (dest[b] != '\0')
-		c++;
+		b++;
 	while (src[c] != '\0' && c < n)
 	{
 		dest[b] = src[c];
@@ -55,9 +55,9 @@ char *_cat(char *dest, char *src)
 {
 	char *a = dest;
 
-	while (*dest != '\0')
+	while (*dest)
 		dest++;
-	while (*src != '\0')
+	while (*src)
 		*dest++ = *src++;
 	*dest = *src;
 
