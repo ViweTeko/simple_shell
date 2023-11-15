@@ -104,10 +104,10 @@ int _deci(int input, int fd)
 }
 
 /**
- * conv_num - converter function, a clone of itoa
+ * conv_num - convert func
  * @num: number
- * @base: base
- * @flags: argument flags
+ * @base: base number
+ * @flags: arg flags
  *
  * Return: string
  */

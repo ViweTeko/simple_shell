@@ -56,7 +56,7 @@ int _puterr(char c)
 	if (c == FLUSH_B || a >= WRITE_SIZE)
 	{
 		write(2, b, a);
-	a = 0;
+		a = 0;
 	}
 	if (c != FLUSH_B)
 		b[a++] = c;
@@ -70,10 +70,13 @@ int _puterr(char c)
  */
 void _eputs(char *s)
 {
-	int a;
+	int a = 0;
 
 	if (!s)
 		return;
-	for (a = 0; s[a] != '\0'; ++a)
+	while (s[a] != '\0')
+	{
 		_puterr(s[a]);
+		a++;
+	}
 }

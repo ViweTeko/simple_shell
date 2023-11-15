@@ -15,14 +15,14 @@ void info_free(info_t *in, int a)
 	{
 		if (!in->_buf)
 			free(in->arg);
-		if (in->history)
-			list_free(&(in->history));
 		if (in->env)
 			list_free(&(in->env));
+		if (in->history)
+			list_free(&(in->history));
 		if (in->alias)
 			list_free(&(in->alias));
 		free_s(in->environ);
-			in->environ = NULL;
+		in->environ = NULL;
 		fresh((void **)in->_buf);
 		if (in->fd_rd > 2)
 			close(in->fd_rd);

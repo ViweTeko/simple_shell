@@ -29,6 +29,7 @@ int set_env(info_t *in, char *e, char *val)
 		if (a && *a == '=')
 		{
 			free(c->s);
+			c->s = b;
 			in->changed_env = 1;
 			return (0);
 		}
@@ -81,7 +82,7 @@ int un_setenv(info_t *in, char *e)
 
 char **get_envir(info_t *in)
 {
-	if (in->changed_env || !in->environ)
+	if (!in->environ || in->changed_env)
 	{
 		in->environ = strings_list(in->env);
 		in->changed_env = 0;

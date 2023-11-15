@@ -33,7 +33,7 @@ int hist_rd(info_t *in)
 		return (free(buffer), 0);
 	close(e);
 
-	for (b = 0; b < g; ++b)
+	for (b = 0; b < g; b++)
 		if (buffer[b] == '\n')
 		{
 			buffer[b] = 0;
@@ -95,7 +95,7 @@ int renum_hist(info_t *in)
 
 	while (b)
 	{
-		b->num = ++a;
+		b->num = a++;
 		b = b->next;
 	}
 	return (in->histcount = a);

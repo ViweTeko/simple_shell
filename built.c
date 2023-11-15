@@ -131,7 +131,7 @@ int _help(info_t *in)
 	char **a_a;
 
 	a_a = in->argv;
-	_puts("help call works. Function not yet implemented \n");
+	_puts("Help call works. But function not yet implemented \n");
 	if (0)
 		_puts(*a_a);
 	return (0);

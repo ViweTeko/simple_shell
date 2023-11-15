@@ -80,14 +80,22 @@ int _chain(info_t *in, char *b, size_t *a)
 char *_ncpy(char *dest, char *src, int n)
 {
 	char *a = dest;
-	int b, c;
+	int b = 0, c;
 
-	for (b = 0; src[b] != '\0' && b < n - 1; ++b)
+	while (src[b] != '\0' && b < n - 1)
+	{
 		dest[b] = src[b];
+		b++;
+	}
+
 	if (b < n)
 	{
-		for (c = b; c < n; ++c)
+		c = b;
+		while (c < n)
+		{
 			dest[c] = '\0';
+			c++;
+		}
 	}
 	return (a);
 }

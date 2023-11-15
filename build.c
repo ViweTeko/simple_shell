@@ -57,7 +57,7 @@ int print_ali(list_t *node)
 	{
 		p = _chr(node->s, '=');
 		for (a = node->s; a <= p; a++)
-		_putchar(*a);
+			_putchar(*a);
 		_putchar('\'');
 		_puts(p + 1);
 		_puts("'\n");

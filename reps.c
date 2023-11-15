@@ -90,7 +90,7 @@ int rep_e(info_t *in)
 
 void setter(info_t *in, char *argv[])
 {
-	int a = 0;
+	int a;
 
 	in->fname = argv[0];
 	if (in->arg)
@@ -105,8 +105,8 @@ void setter(info_t *in, char *argv[])
 				in->argv[1] = NULL;
 			}
 		}
-		while (in->argv && in->argv[a])
-			++a;
+		for (a = 0; in->argv && in->argv[a]; a++)
+			;
 		in->argc = a;
 		rep_ali(in);
 		rep_e(in);
