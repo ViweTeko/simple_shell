@@ -37,16 +37,11 @@ char *path_find(info_t *in, char *p, char *c)
 		return (NULL);
 	if ((_len(c) > 2) && starts_w(c, "./"))
 	{
-		printf("The path starts with dot slash\n");
 		if (is_c(in, c))
-		{
-			printf("is_c(in, c) is true\n");
 			return (c);
-		}
 	}
 	while (1)
 	{
-		printf("While 1 is true..\n");
 		if (!p[a] || p[a] == ':')
 		{
 			path = dupl(p, b, a);
@@ -82,7 +77,7 @@ char *dupl(char *p, int st, int end)
 	int b = 0, a = 0;
 	static char buffer[1024];
 
-	for (a = st, b = 0; a < end; ++a)
+	for (a = st, b = 0; a < end; a++)
 	{
 		if (p[a] != ':')
 			buffer[b++] = p[a];
@@ -136,12 +131,10 @@ void find_c(info_t *in)
 		return;
 
 	p = path_find(in, get_env(in, "PATH="), in->argv[0]);
-	printf("p is %s\n", p);
 	if (p)
 	{
 		in->path = p;
 		fork_c(in);
-		printf("Forked cmd one..\n");
 	}
 	else
 	{
@@ -149,12 +142,11 @@ void find_c(info_t *in)
 			&& is_c(in, in->argv[0]))
 		{
 			fork_c(in);
-			printf("This is true, forked..\n");
 		}
 		else if (*(in->arg) != '\n')
 		{
 			in->status = 127;
-			print_err(in, "Not Found\n");
+			print_err(in, "Command not Found\n");
 		}
 	}
 }

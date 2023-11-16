@@ -56,7 +56,7 @@ int hsh(info_t *in, char *argv[])
 	int b = 0;
 	ssize_t a = 0;
 
-	while (b != -2 && a != -1)
+	while (a != -1 && b != -2)
 	{
 		info_init(in);
 		if (inter(in))
@@ -76,14 +76,14 @@ int hsh(info_t *in, char *argv[])
 	}
 	hist_wr(in);
 	info_free(in, 1);
+	if (!inter(in) && in->status)
+		exit(in->status);
 	if (b == -2)
 	{
 		if (in->err_num == -1)
 			exit(in->status);
 		exit(in->err_num);
 	}
-	if (!inter(in) && in->status)
-		exit(in->status);
 
 	return (b);
 }
@@ -119,7 +119,7 @@ char **stow(char *s, char *de)
 		while (_delim(s[a], de))
 			a++;
 		c = 0;
-		while (_delim(s[a + c], de) && s[a + c])
+		while (!_delim(s[a + c], de) && s[a + c])
 			c++;
 		r[b] = malloc((c + 1) * sizeof(char));
 		if (!r[b])
@@ -200,4 +200,3 @@ void free_s(char **z)
 		free(*z++);
 	free(a);
 }
-

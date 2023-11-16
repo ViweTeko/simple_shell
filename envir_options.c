@@ -129,7 +129,7 @@ void fork_c(info_t *in)
 	kid = fork();
 	if (kid == -1)
 	{
-		perror("Error: ");
+		perror("Error: Cannot fork pid_t kid\n");
 		return;
 	}
 	if (kid == 0)

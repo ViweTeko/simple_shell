@@ -13,17 +13,17 @@ void check_ch(info_t *in, char *b, size_t *a, size_t c, size_t d)
 {
 	size_t e = *a;
 
-	if (in->c_type == OR_C)
+	if (in->c_type == AND_C)
 	{
-		if (!in->status)
+		if (in->status)
 		{
 			b[c] = 0;
 			e = d;
 		}
 	}
-	if (in->c_type == AND_C)
+	if (in->c_type == OR_C)
 	{
-		if (in->status)
+		if (!in->status)
 		{
 			b[c] = 0;
 			e = d;
@@ -48,13 +48,13 @@ int _chain(info_t *in, char *b, size_t *a)
 	if (b[c] == '&' && b[c + 1] == '&')
 	{
 		b[c] = 0;
-		++c;
+		c++;
 		in->c_type = AND_C;
 	}
 	else if (b[c] == '|' && b[c + 1] == '|')
 	{
 		b[c] = 0;
-		++c;
+		c++;
 		in->c_type = OR_C;
 	}
 	else if (b[c] == ';')

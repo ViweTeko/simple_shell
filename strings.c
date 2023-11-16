@@ -36,8 +36,8 @@ char *_ncat(char *dest, char *src, int n)
 	while (src[c] != '\0' && c < n)
 	{
 		dest[b] = src[c];
-		++b;
-		++c;
+		b++;
+		c++;
 	}
 	if (c < n)
 		dest[b] = '\0';

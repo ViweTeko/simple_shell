@@ -28,13 +28,13 @@ int _putchar(char c)
 	static char b[WRITE_SIZE];
 	static int a;
 
-	if (a >= WRITE_SIZE || c == FLUSH_B)
+	if (c == FLUSH_B || a >= WRITE_SIZE)
 	{
 		write(1, b, a);
 		a = 0;
 	}
 	if (c != FLUSH_B)
-		b[++a] = c;
+		b[a++] = c;
 	return (1);
 }
 
@@ -45,12 +45,15 @@ int _putchar(char c)
 
 void _puts(char *s)
 {
-	int a;
+	int a = 0;
 
 	if (!s)
 		return;
-	for (a = 0; s[a] != '\0'; ++a)
+	while (s[a] != '\0')
+	{
 		_putchar(s[a]);
+		a++;
+	}
 }
 
 /**
@@ -65,7 +68,7 @@ char *_dup(const char *s)
 	char *r;
 	int t = 0;
 
-	if (!s)
+	if (s == NULL)
 		return (NULL);
 	while (*s++)
 		t++;
@@ -87,14 +90,16 @@ char *_dup(const char *s)
 
 char *_cpy(char *dest, char *src)
 {
-	int a;
+	int a = 0;
 
 	if (dest == src || src == 0)
 		return (dest);
-	for (a = 0; src[a] != '\0'; ++a)
+	while (src[a])
+	{
 		dest[a] = src[a];
+		a++;
+	}
 
 	dest[a] = 0;
 	return (dest);
 }
-

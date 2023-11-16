@@ -146,7 +146,7 @@ void list_free(list_t **h)
 {
 	list_t *g, *i, *hd;
 
-	if (!*h || !h)
+	if (!h || !*h)
 		return;
 	hd = *h;
 	g = hd;

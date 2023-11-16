@@ -32,10 +32,13 @@ size_t print_list(const list_t *h)
 
 size_t list_len(const list_t *h)
 {
-	size_t a;
+	size_t a = 0;
 
-	for (a = 0; h != NULL; ++a)
+	while (h)
+	{
 		h = h->next;
+		a++;
+	}
 
 	return (a);
 }
